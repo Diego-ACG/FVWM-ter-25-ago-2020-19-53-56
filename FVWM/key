@@ -1,0 +1,68 @@
+# >> Ignore Numlock and other modifiers for bindings
+IgnoreModifiers L25
+
+# >> Launching apps
+Key Return A 4 Exec xfce4-terminal 		# > Terminal
+Key c A 4 Exec chromium 				# > Navegator
+Key f A 4 Exec chromium faceboock.com 	# > FaceBook
+Key y A 4 Exec chromium youtube.com 	# > YouTube
+Key t A 4 Exec thunar 					# > File Manager
+Key s A 4 Exec subl 					# > Text Editor
+
+# >> Volume control
+Key XF86AudioRaiseVolume A A Exec amixer -q set Master 5%+ # > Volume +5
+Key XF86AudioLowerVolume A A Exec amixer -q set Master 5%- # > Volume -5
+Key XF86AudioMute A A Exec amixer set Master toggle 	   # > Volume Muted
+
+# > PrintScreen
+Key Print A 4 Exec exec scrot 'My_FVWM_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
+
+# > Wondows and workspace
+# > Close, maximize, minimize, quit and restart
+Key q WT 4 Close
+Key space WT 4 Maximize
+Key a WT 4S Thumbnail
+Key r A 4S Restart
+Key e A 4S Quit
+
+Key 1 A 4 GotoDesk 0 0
+Key 2 A 4 GotoDesk 0 1
+Key 3 A 4 GotoDesk 0 2
+Key 4 A 4 GotoDesk 0 3
+Key 5 A 4 GotoDesk 0 4
+Key 6 A 4 GotoDesk 0 5
+Key 7 A 4 GotoDesk 0 6
+Key 8 A 4 GotoDesk 0 7
+
+# > Super + Shift + 1-4 to send to another workspace
+Key 1 A 4S MovetoDesk 0 0
+Key 2 A 4S MovetoDesk 1 0
+Key 3 A 4S MovetoDesk 2 0
+Key 4 A 4S MovetoDesk 3 0
+Key 5 A 4S MovetoDesk 4 0
+Key 6 A 4S MovetoDesk 5 0
+Key 7 A 4S MovetoDesk 6 0
+Key 8 A 4S MovetoDesk 7 0
+
+# > Super + Shift + Left/Right to send to prev/next workspace
+Key Left A 4S MoveToPage -1p +0p
+Key Right A 4S MoveToPage +1p +0p
+
+# > Aero Snap
+Key Left A 4 SnapLeft
+Key Right A 4 SnapRight
+Key Up A 4 SnapHalf
+Key Down A 4 SnapQuarter
+Key n A 4 SnapTiny
+
+# > Move to the edge of the screen
+Key Left A C4 Move 0 w+0
+Key Right A C4 Move -0 w+0
+Key Up A C4 Move w+0 0
+Key Down A C4 Move w+0 -0
+
+# > Free resize using mouse
+Key r A M Resize
+
+# > Super + T Toggle window decoration
+key d WT 4 ToggleTitle

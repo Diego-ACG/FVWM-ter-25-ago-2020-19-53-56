@@ -1,0 +1,72 @@
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'DejaVu Sans Mono:size=12',
+    gap_x = 48,
+    gap_y = 44,
+    minimum_height = 849,
+    minimum_width = 0,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    own_window_transparent = false,
+    own_window_argb_visual = true,
+    own_window_hints = undecorated,sticky,skip_taskbar,skip_pager,
+    own_window_colour = '#242424',
+    default_shade_color = '#000000',
+    own_window_argb_value = 200,
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
+
+conky.text = [[ 
+${font Sans: Bold: size=35}${voffset -10}${color #FF6F6F}${time %H:%M}${alignr}${font Sans: Bold: size=15}${scroll 32 ${time %D}}
+${voffset}
+${font Sans: Bold: size=20}${color #FF6F6F}${execi 1 sh ~/.conky/now.sh},${color } ${USER}
+${font Sans: Bold: size=10}Voçê está logado á${alignr}${color #FF6F6F}${uptime}${color }
+${font Sans: Bold: size=10}Estão fazendo ${font Icommon: Bold: size=11}${color #FF6F6F}${execi 100 curl wttr.in?format=1 | awk '{print $2}'}${color }${font Sans: Bold: size=10} na sua cidade agora
+Voçê Tem ${color #FF6F6F}${exec cat ~/.cache/xfce4/notifyd/log | grep summary | wc -l}${color } notificações.
+${color #FF6F6F}${exec cat ~/.cache/xfce4/notifyd/log | grep summary | sed 's/.*=/>> /g'}
+${color }$hr
+${font Sans: Bold: size=15}${color }Seu sistema, em tempo real!
+
+${font iosevka: Regular: size=25}${color #FF0000} ${color #00FF00}    ${color #00FFFF}    ${color }${font } 
+
+${exec free -h | sed -n 2p | awk '{print $2}'}      ${cpu}%     ${downspeed enp2s0}
+${exec free -h | sed -n 2p | awk '{print $3}'}      ${cpu cpu1}%     ${upspeed enp2s0}
+
+${color }$hr
+${font Sans: Bold: size=15}${color }Pacotes e atualizações!
+
+${font iosevka: Regular: size=25}${color #FF0000}   ${color #00FF00}    ${color #00FFFF} ${color }${font } 
+${font Sans: Bold: size=15}    ${exec checkupdates 2> /dev/null | wc -l}${alignr 105}${exec ls/var/cache/pacman/pkg | wc -l}${alignr 40}${exec pacman -Q | wc -l}
+${color}$hr
+${if_running mpd}${exec echo "Tocando agora"}
+${image ~/wallpapers/disks.jpg -p 150,540 -s 120x120}${endif}
+${font Sans: Bold: size=10}${scroll 15 ${color #FFFFFF}${exec mpc 2> /dev/null | sed -n 1p}}
+${exec mpc | sed -n 2p | awk '{print $1,$4}' | sed 's/]//g;s/\[//g'}
+${exec mpc | sed -n 2p | awk '{print $3}'
+]]
+
